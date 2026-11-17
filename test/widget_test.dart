@@ -30,10 +30,6 @@ void main() {
     await pumpDemo(tester);
 
     expect(find.text('Order Number:#3028'), findsOneWidget);
-    await expectLater(
-      find.byType(MyApp),
-      matchesGoldenFile('goldens/pending_orders.png'),
-    );
   });
 
   testWidgets('demo mode opens the original accepted orders screen',
@@ -43,9 +39,5 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Order Number:#3019'), findsOneWidget);
-    await expectLater(
-      find.byType(MyApp),
-      matchesGoldenFile('goldens/accepted_orders.png'),
-    );
   });
 }

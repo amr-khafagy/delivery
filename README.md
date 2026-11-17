@@ -23,14 +23,6 @@ A Flutter delivery-companion application for managing the driver workflow: authe
 - **Local Storage:** Shared Preferences and SQLite
 - **Networking:** HTTP
 
-## Screenshots
-
-The following screenshots are generated from the original Flutter screens in portfolio demo mode, using local sample orders only.
-
-| Pending orders | Accepted orders |
-| --- | --- |
-| ![Pending orders screen](test/goldens/pending_orders.png) | ![Accepted orders screen](test/goldens/accepted_orders.png) |
-
 ## Project Structure
 
 ```text
