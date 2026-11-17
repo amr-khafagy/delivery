@@ -38,16 +38,15 @@ lib/
 
 This repository contains a portfolio implementation. To run it with your own environment, configure:
 
-1. A Firebase project for Cloud Firestore and Firebase Cloud Messaging.
-2. A Google Maps API key with Maps SDK and Directions API enabled.
+1. A Firebase project for Cloud Firestore and Firebase Cloud Messaging. Place your own `google-services.json` in `android/app/` and, when building for iOS, `GoogleService-Info.plist` in `ios/Runner/`. These files are intentionally ignored by Git.
+2. A Google Maps API key with Maps SDK and Directions API enabled. Add it locally to `android/local.properties` as `google.maps.apiKey=YOUR_KEY`, and supply the same key to Flutter with `--dart-define=GOOGLE_MAPS_API_KEY=YOUR_KEY`.
 3. A compatible REST backend, then replace the base URL in `lib/data/static/applink.dart`.
-4. Android and iOS Firebase configuration files for your own Firebase project.
 
 Then run:
 
 ```bash
 flutter pub get
-flutter run
+flutter run --dart-define=GOOGLE_MAPS_API_KEY=YOUR_KEY
 ```
 
 ## Key Learning Areas
