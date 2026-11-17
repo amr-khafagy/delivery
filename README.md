@@ -2,6 +2,13 @@
 
 A self-contained Flutter portfolio demo for a delivery-driver workflow. It presents an active delivery, order queue, profile screen, and an interactive route-tracking experience without requiring a backend or third-party keys.
 
+## Preview
+
+<p align="center">
+  <img src="assets/screenshots/dashboard.png" alt="Delivery dashboard" width="280" />
+  <img src="assets/screenshots/tracking.png" alt="Delivery route tracking" width="280" />
+</p>
+
 ## Features
 
 - Driver dashboard with delivery metrics and order queue.

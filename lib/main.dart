@@ -18,6 +18,7 @@ class DeliveryDemoApp extends StatelessWidget {
           brightness: Brightness.light,
         ),
         scaffoldBackgroundColor: const Color(0xFFF7F8FC),
+        fontFamily: 'Cairo',
         useMaterial3: true,
       ),
       home: const DashboardScreen(),
@@ -317,14 +318,25 @@ class ActiveOrderCard extends StatelessWidget {
             children: [
               const Icon(Icons.schedule, color: Color(0xFFDDE5FF), size: 18),
               const SizedBox(width: 6),
-              Text('${order.etaMinutes} min away', style: const TextStyle(color: Colors.white)),
-              const Spacer(),
-              TextButton(
-                onPressed: onTrack,
-                style: TextButton.styleFrom(backgroundColor: Colors.white, foregroundColor: const Color(0xFF315EFB)),
-                child: const Text('View live route'),
+              Expanded(
+                child: Text(
+                  '${order.etaMinutes} min away',
+                  style: const TextStyle(color: Colors.white),
+                ),
               ),
             ],
+          ),
+          const SizedBox(height: 12),
+          SizedBox(
+            width: double.infinity,
+            child: TextButton(
+              onPressed: onTrack,
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: const Color(0xFF315EFB),
+              ),
+              child: const Text('View live route'),
+            ),
           ),
         ],
       ),
@@ -499,9 +511,18 @@ class _SectionTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+        Expanded(
+          child: Text(
+            title,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+          ),
+        ),
         const Spacer(),
-        Text(action, style: const TextStyle(color: Color(0xFF315EFB), fontWeight: FontWeight.w600)),
+        Text(
+          action,
+          style: const TextStyle(color: Color(0xFF315EFB), fontWeight: FontWeight.w600),
+        ),
       ],
     );
   }
