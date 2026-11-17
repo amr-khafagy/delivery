@@ -1,30 +1,51 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility in the flutter_test package. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:delivery/core/services/services.dart';
+import 'package:delivery/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:delivery/main.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
+  setUp(() async {
+    Get.testMode = true;
+    Get.reset();
+    SharedPreferences.setMockInitialValues({'language': 'en'});
+    await Get.putAsync(() => MyServices().init());
+  });
+
+  tearDown(Get.reset);
+
+  Future<void> pumpDemo(WidgetTester tester) async {
+    tester.view.physicalSize = const Size(360, 690);
+    tester.view.devicePixelRatio = 1.0;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+
     await tester.pumpWidget(const MyApp());
+    await tester.pumpAndSettle();
+  }
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('demo mode opens the original pending orders screen',
+      (WidgetTester tester) async {
+    await pumpDemo(tester);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    expect(find.text('Order Number:#3028'), findsOneWidget);
+    await expectLater(
+      find.byType(MyApp),
+      matchesGoldenFile('goldens/pending_orders.png'),
+    );
+  });
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('demo mode opens the original accepted orders screen',
+      (WidgetTester tester) async {
+    await pumpDemo(tester);
+    await tester.tap(find.text('accept orders'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('Order Number:#3019'), findsOneWidget);
+    await expectLater(
+      find.byType(MyApp),
+      matchesGoldenFile('goldens/accepted_orders.png'),
+    );
   });
 }

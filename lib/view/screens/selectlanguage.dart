@@ -17,7 +17,7 @@ class SelectLanguage extends GetView<LocaleController> {
           children: [
             Text(
               "1".tr,
-              style: Theme.of(context).textTheme.headline1,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
             SelectLanguageButton(
               buttontext: "Arabic",

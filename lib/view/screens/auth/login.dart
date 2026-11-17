@@ -28,7 +28,7 @@ class Login extends StatelessWidget {
           "9".tr,
           style: Theme.of(context)
               .textTheme
-              .headline1!
+              .displaySmall!
               .copyWith(color: AppColor.grey),
         ),
       ),
@@ -83,7 +83,7 @@ class Login extends StatelessWidget {
                           InkWell(
                             child: Text(
                               "14".tr,
-                              style: Theme.of(context).textTheme.bodyText1,
+                              style: Theme.of(context).textTheme.bodyLarge,
                               textAlign: TextAlign.end,
                             ),
                             onTap: () {

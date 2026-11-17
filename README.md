@@ -23,6 +23,14 @@ A Flutter delivery-companion application for managing the driver workflow: authe
 - **Local Storage:** Shared Preferences and SQLite
 - **Networking:** HTTP
 
+## Screenshots
+
+The following screenshots are generated from the original Flutter screens in portfolio demo mode, using local sample orders only.
+
+| Pending orders | Accepted orders |
+| --- | --- |
+| ![Pending orders screen](test/goldens/pending_orders.png) | ![Accepted orders screen](test/goldens/accepted_orders.png) |
+
 ## Project Structure
 
 ```text
@@ -37,6 +45,12 @@ lib/
 ## Setup
 
 This repository contains a portfolio implementation. To run it with your own environment, configure:
+
+### Portfolio Demo Mode
+
+The repository opens in `APP_DEMO_MODE=true` by default. It uses the original GetX screens and controllers with local order data, so the orders workflow can be reviewed without an active backend or Firebase project.
+
+To use the original service integrations, run with `--dart-define=APP_DEMO_MODE=false` and complete the configuration below.
 
 1. A Firebase project for Cloud Firestore and Firebase Cloud Messaging. Place your own `google-services.json` in `android/app/` and, when building for iOS, `GoogleService-Info.plist` in `ios/Runner/`. These files are intentionally ignored by Git.
 2. A Google Maps API key with Maps SDK and Directions API enabled. Add it locally to `android/local.properties` as `google.maps.apiKey=YOUR_KEY`, and supply the same key to Flutter with `--dart-define=GOOGLE_MAPS_API_KEY=YOUR_KEY`.

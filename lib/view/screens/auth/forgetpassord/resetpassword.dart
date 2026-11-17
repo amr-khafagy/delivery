@@ -24,7 +24,7 @@ Get.put(ResetPasswordControllIMP());
           style: Theme
               .of(context)
               .textTheme
-              .headline1!
+              .displaySmall!
               .copyWith(color: AppColor.grey),
         ),
       ),

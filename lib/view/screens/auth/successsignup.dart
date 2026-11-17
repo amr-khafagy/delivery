@@ -18,7 +18,7 @@ class SucessSignUp extends StatelessWidget {
           "32".tr,
           style: Theme.of(context)
               .textTheme
-              .headline1!
+              .displaySmall!
               .copyWith(color: AppColor.grey, fontSize: 30),
         ),
       ),
@@ -35,7 +35,7 @@ class SucessSignUp extends StatelessWidget {
               Text("37".tr,
                   style: Theme.of(context)
                       .textTheme
-                      .headline1!
+                      .displaySmall!
                       .copyWith(fontSize: 30)),
               Text("40".tr),
               SizedBox(

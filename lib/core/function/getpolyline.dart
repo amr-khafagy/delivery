@@ -8,7 +8,6 @@ import 'package:http/http.dart' as http;
 
 Future getPolyline(lat, long, destlat, destlong) async {
   final polylineCoordinates = <LatLng>[];
-  final polylinePoints = PolylinePoints();
   final polylines = <Polyline>{};
   if (AppConfig.googleMapsApiKey.isEmpty) {
     return polylines;
@@ -32,7 +31,7 @@ Future getPolyline(lat, long, destlat, destlong) async {
     return polylines;
   }
 
-  final result = polylinePoints.decodePolyline(points);
+  final result = PolylinePoints.decodePolyline(points);
   if (result.isNotEmpty) {
     for (final point in result) {
       polylineCoordinates.add(LatLng(point.latitude, point.longitude));

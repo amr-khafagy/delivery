@@ -1,8 +1,10 @@
 import 'package:delivery/core/class/statusrequest.dart';
+import 'package:delivery/core/config/app_config.dart';
 import 'package:delivery/core/function/handlingdata.dart';
 import 'package:delivery/core/services/services.dart';
 import 'package:delivery/data/datasource/remote/orders/orders.dart';
 import 'package:delivery/data/model/ordersmodel.dart';
+import 'package:delivery/data/static/demo_orders.dart';
 import 'package:get/get.dart';
 
 class AcceptedOrdersController extends GetxController {
@@ -15,6 +17,12 @@ class AcceptedOrdersController extends GetxController {
     ordersList.clear();
     statuesRequest = StatuesRequest.loading;
     update();
+    if (AppConfig.demoMode) {
+      ordersList.addAll(DemoOrders.accepted);
+      statuesRequest = StatuesRequest.success;
+      update();
+      return;
+    }
     var response = await orders
         .ordersAcceptedData(myServices.sharedPreferences.getString("id")!);
     statuesRequest = handlingData(response);
@@ -30,6 +38,11 @@ class AcceptedOrdersController extends GetxController {
   }
 
   doneOrders(String ordersid, String userid) async {
+    if (AppConfig.demoMode) {
+      ordersList.removeWhere((item) => item.ordersId == ordersid);
+      update();
+      return;
+    }
     ordersList.clear();
     statuesRequest = StatuesRequest.loading;
     update();

@@ -25,7 +25,7 @@ class ForgetPassword extends StatelessWidget {
             "14".tr,
             style: Theme.of(context)
                 .textTheme
-                .headline1!
+                .displaySmall!
                 .copyWith(color: AppColor.grey),
           ),
         ),

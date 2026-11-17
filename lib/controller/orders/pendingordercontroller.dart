@@ -1,9 +1,12 @@
 import 'package:delivery/controller/tracking_controller.dart';
 import 'package:delivery/core/class/statusrequest.dart';
+import 'package:delivery/core/config/app_config.dart';
+import 'package:delivery/core/constant/routes.dart';
 import 'package:delivery/core/function/handlingdata.dart';
 import 'package:delivery/core/services/services.dart';
 import 'package:delivery/data/datasource/remote/orders/orders.dart';
 import 'package:delivery/data/model/ordersmodel.dart';
+import 'package:delivery/data/static/demo_orders.dart';
 import 'package:get/get.dart';
 
 class PendingOrdersController extends GetxController {
@@ -16,6 +19,12 @@ class PendingOrdersController extends GetxController {
     ordersList.clear();
     statuesRequest = StatuesRequest.loading;
     update();
+    if (AppConfig.demoMode) {
+      ordersList.addAll(DemoOrders.pending);
+      statuesRequest = StatuesRequest.success;
+      update();
+      return;
+    }
     var response = await orders.ordersPendingData();
     statuesRequest = handlingData(response);
     if (StatuesRequest.success == statuesRequest) {
@@ -30,6 +39,11 @@ class PendingOrdersController extends GetxController {
   }
 
   approveOrders(String ordersid, String userid) async {
+    if (AppConfig.demoMode) {
+      final order = ordersList.firstWhere((item) => item.ordersId == ordersid);
+      Get.toNamed(AppRoutes.tracking, arguments: {'ordersModel': order});
+      return;
+    }
     ordersList.clear();
     statuesRequest = StatuesRequest.loading;
     update();
@@ -38,7 +52,7 @@ class PendingOrdersController extends GetxController {
     statuesRequest = handlingData(response);
     if (StatuesRequest.success == statuesRequest) {
       if (response['status'] == "success") {
-        TrackingController trackingController=Get.put(TrackingController());
+        Get.put(TrackingController());
       } else {
         statuesRequest = StatuesRequest.failure;
       }

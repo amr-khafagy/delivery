@@ -1,3 +1,4 @@
+import 'package:delivery/core/config/app_config.dart';
 import 'package:delivery/core/constant/routes.dart';
 import 'package:delivery/core/services/services.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,9 @@ class MiddleWare extends GetMiddleware{
   MyServices myServices=Get.find();
   @override
   RouteSettings? redirect(String? route){
+    if (AppConfig.demoMode) {
+      return const RouteSettings(name: AppRoutes.homepage);
+    }
     if(myServices.sharedPreferences.getString("step")=="2"){
       return const RouteSettings(name: AppRoutes.homepage);
     }

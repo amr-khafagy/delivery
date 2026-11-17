@@ -21,13 +21,15 @@ class AcceptedOrdersCard extends GetView<AcceptedOrdersController> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(
-                "Order Number:#${orderslistmodel.ordersId!}",
-                style:
-                TextStyle(fontSize: 30.sp, fontWeight: FontWeight.bold),
+              Expanded(
+                child: Text(
+                  "Order Number:#${orderslistmodel.ordersId!}",
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
+                ),
               ),
+              SizedBox(width: 8.w),
               Text(
                 Jiffy(orderslistmodel.ordersDatetime).fromNow(),
                 style:  TextStyle(
@@ -63,8 +65,10 @@ class AcceptedOrdersCard extends GetView<AcceptedOrdersController> {
                 fontSize: 15, fontWeight: FontWeight.bold, color: Colors.grey),
           ),
           const SettingDivider(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+          Wrap(
+            alignment: WrapAlignment.spaceAround,
+            spacing: 8.w,
+            runSpacing: 8.h,
             children: [
               Text(
                 "Total Price:#${orderslistmodel.ordersTotalprice!}",
