@@ -1,49 +1,33 @@
 # Delivery Driver App
 
-A Flutter delivery-companion application for managing the driver workflow: authentication, order queues, order details, completion, and live location tracking.
+A self-contained Flutter portfolio demo for a delivery-driver workflow. It presents an active delivery, order queue, profile screen, and an interactive route-tracking experience without requiring a backend or third-party keys.
 
 ## Features
 
-- Sign up, sign in, account verification, and password-reset flows.
-- Localized app setup with language selection.
-- Pending and accepted order queues.
-- Order details, delivery status updates, and order completion.
-- Google Maps-based delivery tracking with destination markers and route polylines.
-- Driver location updates using device geolocation and Cloud Firestore.
-- Push-notification and local-notification integration.
-- Responsive layout support and local preferences for app state.
+- Driver dashboard with delivery metrics and order queue.
+- Active-order card and order status handling.
+- Interactive route-tracking screen with delivery progress steps.
+- Delivery-completion feedback flow.
+- Responsive Material 3 interface designed for a delivery workflow.
 
 ## Tech Stack
 
 - **Framework:** Flutter
-- **State Management & Navigation:** GetX
-- **Backend:** REST APIs and Cloud Firestore
-- **Maps & Location:** Google Maps Flutter, Geolocator, Geocoding, and Polyline Points
-- **Notifications:** Firebase Cloud Messaging and Flutter Local Notifications
-- **Local Storage:** Shared Preferences and SQLite
-- **Networking:** HTTP
+- **UI:** Material 3
+- **Navigation:** Flutter Navigator
+- **Data Source:** Local demo data
+- **Route Preview:** Custom Flutter painting
 
 ## Project Structure
 
 ```text
 lib/
-├── bindings/       # Dependency bindings
-├── controller/     # Authentication, orders, home, and tracking controllers
-├── core/           # Networking, localization, services, utilities, and shared UI
-├── data/           # API data sources and models
-└── view/           # Screens and reusable widgets
+└── main.dart       # Demo data, screens, reusable UI, and route preview
 ```
 
 ## Setup
 
-This repository contains a portfolio implementation. To run it with your own environment, configure:
-
-1. A Firebase project for Cloud Firestore and Firebase Cloud Messaging.
-2. A Google Maps API key with Maps SDK and Directions API enabled.
-3. A compatible REST backend, then replace the base URL in `lib/data/static/applink.dart`.
-4. Android and iOS Firebase configuration files for your own Firebase project.
-
-Then run:
+Run locally with no additional services or configuration:
 
 ```bash
 flutter pub get
@@ -52,10 +36,10 @@ flutter run
 
 ## Key Learning Areas
 
-- Organizing a multi-screen Flutter application with GetX.
-- Integrating maps, routes, and device location into a delivery workflow.
-- Combining REST APIs with Firebase for operational updates and live tracking.
-- Building authentication and order-management flows for a role-based mobile app.
+- Modeling a delivery workflow using focused, reusable Flutter UI components.
+- Designing a readable mobile dashboard and delivery-tracking experience.
+- Creating an interactive route visual without exposing API keys or external configuration.
+- Keeping a portfolio demo simple to run and easy to review.
 
 ## Author
 
